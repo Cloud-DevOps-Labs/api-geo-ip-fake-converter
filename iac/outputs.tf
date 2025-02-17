@@ -8,6 +8,6 @@ output "api_key" {
 }
 
 output "curl_example" {
-  value = "curl \"${aws_apigatewayv2_api.lambda_api.api_endpoint}/coords?ip=1.2.3.4&api_key=${random_password.api_key.result}\""
+  value = "curl '${aws_apigatewayv2_api.lambda_api.api_endpoint}/coords?ip=1.2.3.4&api_key=${random_password.api_key.result}'"
   sensitive = true
 }
