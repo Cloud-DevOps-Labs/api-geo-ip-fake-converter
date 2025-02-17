@@ -2,10 +2,10 @@ import json
 import random
 import os
 
-# API key que deberíamos obtener de una variable de entorno
+# API key that should be obtained from an environment variable
 VALID_API_KEY = os.environ.get('API_KEY', 'test-api-key-123')
 
-# Coordenadas aproximadas de los continentes (para asegurar que caigan en tierra)
+# Approximate coordinates of continents (to ensure coordinates fall on land)
 CONTINENT_BOUNDS = [
     # Norte América
     {'min_lat': 25, 'max_lat': 70, 'min_lon': -165, 'max_lon': -50},
@@ -20,39 +20,39 @@ CONTINENT_BOUNDS = [
 ]
 
 def get_random_coordinates():
-    # Selecciona un continente al azar
+    # Select a random continent
     continent = random.choice(CONTINENT_BOUNDS)
     
-    # Genera coordenadas aleatorias dentro del continente
+    # Generate random coordinates within the continent
     latitude = random.uniform(continent['min_lat'], continent['max_lat'])
     longitude = random.uniform(continent['min_lon'], continent['max_lon'])
     
     return round(latitude, 6), round(longitude, 6)
 
 def lambda_handler(event, context):
-    # Obtener query parameters
+    # Get query parameters
     query_params = event.get('queryStringParameters', {}) or {}
     api_key = query_params.get('api_key')
     ip = query_params.get('ip')
     
-    # Validar API key
+    # Validate API key
     if not api_key or api_key != VALID_API_KEY:
         return {
             'statusCode': 401,
             'body': json.dumps({'error': 'Invalid API key'})
         }
     
-    # Validar IP
+    # Validate IP
     if not ip:
         return {
             'statusCode': 400,
             'body': json.dumps({'error': 'IP parameter is required'})
         }
     
-    # Generar coordenadas aleatorias
+    # Generate random coordinates
     latitude, longitude = get_random_coordinates()
     
-    # Preparar respuesta
+    # Prepare response
     response = {
         'ip': ip,
         'latitude': latitude,

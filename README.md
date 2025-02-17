@@ -1,35 +1,35 @@
 # IP to Coordinates API
 
-Servicio serverless que convierte direcciones IP en coordenadas GPS aleatorias (siempre en tierra firme). Implementado con AWS Lambda y API Gateway.
+A serverless service that converts IP addresses into random GPS coordinates (always on land). Implemented with AWS Lambda and API Gateway.
 
-## Características
+## Features
 
-- Autenticación mediante API key
-- Coordenadas aleatorias siempre en tierra firme (continentes)
+- Authentication via API key
+- Random coordinates always on land (continents)
 - Serverless (AWS Lambda + API Gateway)
-- Infraestructura como código (Terraform)
+- Infrastructure as Code (Terraform)
 
-## Requisitos Previos
+## Prerequisites
 
-- AWS CLI configurado con credenciales
-- Terraform instalado
-- Python 3.9 o superior
+- AWS CLI configured with credentials
+- Terraform installed
+- Python 3.9 or higher
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/ip-to-coords-api.git
+git clone https://github.com/your-username/ip-to-coords-api.git
 cd ip-to-coords-api
 ```
 
-2. (Opcional) Modifica las variables en `terraform/variables.tf`:
-- `aws_region`: Región de AWS
-- `api_key`: Clave de API personalizada
+2. (Optional) Modify variables in `terraform/variables.tf`:
+- `aws_region`: AWS Region
+- `api_key`: Custom API key
 
-## Despliegue
+## Deployment
 
-1. Inicializa y aplica la configuración de Terraform:
+1. Initialize and apply Terraform configuration:
 ```bash
 cd terraform
 terraform init
@@ -37,22 +37,22 @@ terraform plan
 terraform apply
 ```
 
-2. Al finalizar, Terraform mostrará la URL de la API.
+2. After completion, Terraform will display the API URL.
 
-## Uso
+## Usage
 
-La API acepta peticiones GET con los siguientes parámetros:
+The API accepts GET requests with the following parameters:
 
-- `ip`: La dirección IP a convertir
-- `api_key`: Clave de API para autenticación
+- `ip`: The IP address to convert
+- `api_key`: API key for authentication
 
-### Ejemplo de Uso
+### Usage Example
 
 ```bash
-curl "https://[tu-api-id].execute-api.[region].amazonaws.com/coords?ip=1.2.3.4&api_key=test-api-key-123"
+curl "https://[your-api-id].execute-api.[region].amazonaws.com/coords?ip=1.2.3.4&api_key=test-api-key-123"
 ```
 
-### Respuesta
+### Response
 
 ```json
 {
@@ -62,21 +62,21 @@ curl "https://[tu-api-id].execute-api.[region].amazonaws.com/coords?ip=1.2.3.4&a
 }
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 .
 ├── src/
-│   └── lambda_function.py    # Código de la función Lambda
+│   └── lambda_function.py    # Lambda function code
 ├── terraform/
-│   ├── main.tf              # Configuración principal de Terraform
-│   ├── variables.tf         # Variables de Terraform
-│   └── outputs.tf           # Outputs de Terraform
+│   ├── main.tf              # Main Terraform configuration
+│   ├── variables.tf         # Terraform variables
+│   └── outputs.tf           # Terraform outputs
 ├── .gitignore
 ├── LICENSE.md
 └── README.md
 ```
 
-## Licencia
+## License
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
+This project is under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
