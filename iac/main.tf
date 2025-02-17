@@ -2,6 +2,16 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Generate random API key
+resource "random_password" "api_key" {
+  length  = 32
+  special = false
+  override_special = "!@#$%&*()-_=+[]{}<>:?"
+  upper   = true
+  lower   = true
+  numeric = true
+}
+
 # ZIP del código Lambda
 data "archive_file" "lambda_zip" {
   type        = "zip"
@@ -44,7 +54,7 @@ resource "aws_lambda_function" "ip_to_coords" {
 
   environment {
     variables = {
-      API_KEY = var.api_key
+      API_KEY = random_password.api_key.result
     }
   }
 }

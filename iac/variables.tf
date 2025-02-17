@@ -4,8 +4,3 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "api_key" {
-  description = "API Key for authentication"
-  type        = string
-  default     = "test-api-key-123"
-}
