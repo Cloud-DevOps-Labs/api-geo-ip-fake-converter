@@ -1,4 +1,8 @@
+# Dist
+lambda_function.zip
+
 # Python
+
 __pycache__/
 *.py[cod]
 *$py.class
@@ -21,6 +25,7 @@ var/
 *.egg
 
 # Terraform
+
 .terraform/
 *.tfstate
 *.tfstate.*
