@@ -25,7 +25,6 @@ cd ip-to-coords-api
 
 2. (Optional) Modify variables in `terraform/variables.tf`:
 - `aws_region`: AWS Region
-- `api_key`: Custom API key
 
 ## Deployment
 
@@ -37,7 +36,12 @@ terraform plan
 terraform apply
 ```
 
-2. After completion, Terraform will display the API URL.
+2. After completion, get your API credentials:
+```bash
+terraform output -raw api_key        # Get your API key
+terraform output -raw api_endpoint   # Get your API endpoint
+terraform output -raw curl_example   # Get a ready-to-use curl command
+```
 
 ## Usage
 
@@ -48,8 +52,14 @@ The API accepts GET requests with the following parameters:
 
 ### Usage Example
 
+You can get a ready-to-use curl command with:
 ```bash
-curl "https://[your-api-id].execute-api.[region].amazonaws.com/coords?ip=1.2.3.4&api_key=test-api-key-123"
+terraform output -raw curl_example
+```
+
+Or make your own request:
+```bash
+curl "https://[your-api-id].execute-api.[region].amazonaws.com/coords?ip=1.2.3.4&api_key=[your-api-key]"
 ```
 
 ### Response
