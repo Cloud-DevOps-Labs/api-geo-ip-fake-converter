@@ -18,3 +18,5 @@ test:
 	@cd iac && curl -s "$$(terraform output -raw api_endpoint)?ip=1.2.3.4&api_key=invalid" | jq .
 	@echo "\nTesting missing IP..."
 	@cd iac && curl -s "$$(terraform output -raw api_endpoint)?api_key=$$(terraform output -raw api_key)" | jq .
+	@echo "\nTesting invalid IP format..."
+	@cd iac && curl -s "$$(terraform output -raw api_endpoint)?ip=256.256.256.256&api_key=$$(terraform output -raw api_key)" | jq .

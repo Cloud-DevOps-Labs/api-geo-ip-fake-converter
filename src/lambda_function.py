@@ -1,6 +1,14 @@
 import json
 import random
 import os
+import ipaddress
+
+def is_valid_ip(ip_string):
+    try:
+        ipaddress.ip_address(ip_string)
+        return True
+    except ValueError:
+        return False
 
 # API key that should be obtained from an environment variable
 VALID_API_KEY = os.environ.get('API_KEY', 'test-api-key-123')
@@ -42,11 +50,18 @@ def lambda_handler(event, context):
             'body': json.dumps({'error': 'Invalid API key'})
         }
     
-    # Validate IP
+    # Validate IP presence
     if not ip:
         return {
             'statusCode': 400,
             'body': json.dumps({'error': 'IP parameter is required'})
+        }
+
+    # Validate IP format
+    if not is_valid_ip(ip):
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'error': 'Invalid IP format'})
         }
     
     # Generate random coordinates
