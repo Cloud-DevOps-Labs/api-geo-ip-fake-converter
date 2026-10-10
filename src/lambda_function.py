@@ -11,7 +11,7 @@ def is_valid_ip(ip_string):
         return False
 
 # API key that should be obtained from an environment variable
-VALID_API_KEY = os.environ.get('API_KEY', 'test-api-key-123')
+VALID_API_KEY = os.environ.get('API_KEY')  # no fallback: requests are rejected if unset
 
 # Approximate coordinates of continents (to ensure coordinates fall on land)
 CONTINENT_BOUNDS = [
