@@ -1,0 +1,8 @@
+# Generado automáticamente: una PR por dependencia (sin agrupar).
+version: 2
+updates:
+  - package-ecosystem: "terraform"
+    directory: "/iac"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
